@@ -15,7 +15,7 @@ API REST para controle de despesas com autenticação JWT.
 cp .env.example .env
 ```
 
-Edite o `.env` com as credenciais do banco e do serviço de e-mail. Para testes de e-mail, recomendo o [Mailtrap](https://mailtrap.io).
+Edite o `.env` com as credenciais do banco e do serviço de e-mail. Para testes de e-mail, recomendo o [Ethereal](https://ethereal.email) (gratuito, sem cadastro).
 
 ### 2. Banco de dados
 
@@ -30,7 +30,7 @@ npm install
 npm run start:dev
 ```
 
-A API ficará disponível em `http://localhost:3000`.
+A API ficará disponível em `http://localhost:3100`.
 
 ## Endpoints
 
