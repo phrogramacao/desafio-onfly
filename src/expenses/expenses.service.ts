@@ -30,7 +30,9 @@ export class ExpensesService {
     const expense = this.expensesRepository.create({ ...dto, userId });
     const saved = await this.expensesRepository.save(expense);
 
-    await this.mailService.sendExpenseCreatedEmail(user.email, user.name, saved);
+    this.mailService
+      .sendExpenseCreatedEmail(user.email, user.name, saved)
+      .catch((err) => console.error('Erro ao enviar e-mail:', err.message));
 
     return saved;
   }

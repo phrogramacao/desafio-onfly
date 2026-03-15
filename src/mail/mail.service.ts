@@ -23,19 +23,25 @@ export class MailService {
     name: string,
     expense: Expense,
   ): Promise<void> {
-    await this.transporter.sendMail({
-      from: `"Onfly" <${this.config.get('MAIL_FROM')}>`,
-      to,
-      subject: 'despesa cadastrada',
-      html: `
+    const date = expense.date.split('-').reverse().join('/');
+
+    try {
+      await this.transporter.sendMail({
+        from: `"Onfly" <${this.config.get('MAIL_FROM')}>`,
+        to,
+        subject: 'despesa cadastrada',
+        html: `
         <p>Olá, ${name}!</p>
         <p>Sua despesa foi cadastrada com sucesso:</p>
         <ul>
           <li><strong>Descrição:</strong> ${expense.description}</li>
-          <li><strong>Data:</strong> ${expense.date}</li>
+          <li><strong>Data:</strong> ${date}</li>
           <li><strong>Valor:</strong> R$ ${Number(expense.value).toFixed(2)}</li>
         </ul>
       `,
-    });
+      });
+    } catch (error) {
+      console.error(`Falha ao enviar e-mail para ${to}:`, error.message);
+    }
   }
 }

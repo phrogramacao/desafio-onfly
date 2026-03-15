@@ -71,6 +71,7 @@ describe('ExpensesService', () => {
         user.name,
         expense,
       );
+      // e-mail disparado sem await — não bloqueia a resposta
     });
 
     it('deve lançar NotFoundException quando o usuário não existe', async () => {
